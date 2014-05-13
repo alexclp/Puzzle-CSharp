@@ -139,13 +139,17 @@ namespace Puzzle_2013
                     {
                         while (reader.Read())
                         {
-                            toReturn.Add(new Score {
-                                ID = reader.GetInt64(0),
-                                time = reader.(1),
-                                moves = reader.GetString(2)
+                            toReturn.Add(new Score
+                            {
+                                ID = reader.GetInt16(0),
+                                time = reader.GetInt64(1),
+                                moves = reader.GetInt64(2),
+                                items = reader.GetInt64(3)
+                            });
                         }
                     }
                 }
+                connection.Close();
             }
 
             return toReturn;
