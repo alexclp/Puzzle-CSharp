@@ -18,12 +18,22 @@ namespace Puzzle_2013
 
         private void InitializeTable()
         {
+            string[] columns = { "Name", "Surname", "Username", "Password", "Type" };
 
+            foreach (string current in columns)
+            {
+                this.usersListView.Columns.Add(current, -2, HorizontalAlignment.Left);
+            }
         }
 
         private void AddUsersToTable()
         {
+            List<User> listOfUsers = SqlManager.GetUsersFromDatabase();
 
+            foreach (User current in listOfUsers)
+            {
+
+            }
         }
     }
 }
