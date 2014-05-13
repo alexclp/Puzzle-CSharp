@@ -15,5 +15,15 @@ namespace Puzzle_2013
         {
             InitializeComponent();
         }
+
+        private void InitializeTable()
+        {
+
+        }
+
+        private void AddUsersToTable()
+        {
+
+        }
     }
 }
