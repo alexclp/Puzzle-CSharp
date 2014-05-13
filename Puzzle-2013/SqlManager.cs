@@ -71,6 +71,8 @@ namespace Puzzle_2013
             {
                 string query = "Select * from Users";
 
+                connection.Open();
+
                 SqlCeCommand command = new SqlCeCommand(query, connection);
 
                 SqlCeDataReader reader = null;
@@ -101,6 +103,8 @@ namespace Puzzle_2013
                         }
                     }
                 }
+
+                connection.Close();
             }
 
             return toReturn;
@@ -108,7 +112,43 @@ namespace Puzzle_2013
 
         public static List<Score> GetScoresFromDatabase()
         {
-            
+            string connectionString = Properties.Settings.Default.oti2013ConnectionString;
+            List<Score> toReturn = new List<Score>();
+
+            using (SqlCeConnection connection = new SqlCeConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "Select * from Scores";
+
+                SqlCeCommand command = new SqlCeCommand(query, connection);
+
+                SqlCeDataReader reader = null;
+
+                try
+                {
+                    reader = command.ExecuteReader();
+                }
+                catch (SqlCeException)
+                {
+                    Console.WriteLine("Exception was raised when getting scores!");
+                }
+                finally
+                {
+                    if (reader != null)
+                    {
+                        while (reader.Read())
+                        {
+                            toReturn.Add(new Score {
+                                ID = reader.GetInt64(0),
+                                time = reader.(1),
+                                moves = reader.GetString(2)
+                        }
+                    }
+                }
+            }
+
+            return toReturn;
         }
     }
 }

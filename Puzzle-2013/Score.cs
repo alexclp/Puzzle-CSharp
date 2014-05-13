@@ -8,8 +8,8 @@ namespace Puzzle_2013
     public class Score
     {
         public int ID { get; set; }
-        public string moves { get; set; }
-        public string time { get; set; }
-        public string items { get; set; }
+        public Int64 moves { get; set; }
+        public Int64 time { get; set; }
+        public Int64 items { get; set; }
     }
 }
